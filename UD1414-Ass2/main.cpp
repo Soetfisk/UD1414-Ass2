@@ -1,13 +1,6 @@
 #include <iostream>
 
-#include <maya/MSimple.h>
-#include <maya/MIOStream.h>
-#include <maya/MArgList.h>
-#include <maya/MObject.h>
-#include <maya/MGlobal.h>
-#include <maya/MPxCommand.h>
-
-#include <maya/MCallbackIdArray.h>
+#include "maya_includes.h"
 
 
 MCallbackIdArray gCallbackIds;
