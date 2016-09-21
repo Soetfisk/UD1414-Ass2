@@ -57,7 +57,7 @@ EXPORT MStatus initializePlugin(MObject obj)
 EXPORT MStatus uninitializePlugin(MObject obj)
 {
 	MFnPlugin plugin(obj);
-	MGlobal::displayInfo("Ultrabajsplugin annihilated");
+	MGlobal::displayInfo("Ultrabajskissplugin annihilated");
 
 
 	return MS::kSuccess;
