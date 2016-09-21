@@ -45,7 +45,7 @@ EXPORT MStatus initializePlugin(MObject obj)
 		CHECK_MSTATUS(rs);
 	}
 
-	MGlobal::displayInfo("Ultradoom plugin loaded");
+	MGlobal::displayInfo("Ultrabajsplugin loaded");
 
 	addNodeCallback(obj);
 
@@ -57,7 +57,7 @@ EXPORT MStatus initializePlugin(MObject obj)
 EXPORT MStatus uninitializePlugin(MObject obj)
 {
 	MFnPlugin plugin(obj);
-	MGlobal::displayInfo("Ultradoom plugin annihilated");
+	MGlobal::displayInfo("Ultrabajsplugin annihilated");
 
 
 	return MS::kSuccess;
