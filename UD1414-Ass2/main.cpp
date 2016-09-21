@@ -2,31 +2,38 @@
 
 
 MCallbackIdArray gCallbackIds;
+MCallbackId bajs;
 
-void addNodeCallback(MObject nodeObject)
+
+
+
+void addNodeCallback(MObject &node, void *clientData) //get generic node creation
 {
 	MStatus rs = MS::kSuccess;
-	MCallbackId id = MNodeMessage::addAttributeChangedCallback(nodeObject, NULL, &rs);
+	MFnDagNode dagNode(node);
+	//MGlobal::displayInfo(node.apiTypeStr()); //
 
-	
-	gCallbackIds.append(id);
+	MGlobal::displayInfo(dagNode.fullPathName());
 
-	//DERP SJIT
 
+	//if (node.hasFn(MFn::kMesh))
+	//{
+	//	MFnMesh mesh(node);							//here's the meshimesh 
+	//	//MGlobal::displayInfo("MESH GET");
+	//	//mesh.dagPath().fullPathName()
+	//}
+
+	//if (node.hasFn(MFn::kTransform))
+	//{
+	//	MFnTransform transform(node);				//heres the transiformiform
+	//	
+	//	//MGlobal::displayInfo("TRANSFORM GET name: " + transform.name());
+	//}
+ 	
 }
 
-void nodeAdded(MObject nodeObject)
-{
-
-}
 
 
-
-MCallbackId addNodeAddedCallback(MMessage::MNodeFunction func)
-{
-
-
-}
 
 
 //static MStatus removeCallbacks(MCallbackIdArray &ids)
@@ -46,9 +53,16 @@ EXPORT MStatus initializePlugin(MObject obj)
 	}
 
 	MGlobal::displayInfo("Ultrabajsplugin loaded");
+	
+	gCallbackIds.append(MDGMessage::addNodeAddedCallback(addNodeCallback,
+		kDefaultNodeType,
+		NULL,
+		NULL
+	));
 
-	addNodeCallback(obj);
 
+
+	
 
 	return rs;
 }
@@ -59,6 +73,7 @@ EXPORT MStatus uninitializePlugin(MObject obj)
 	MFnPlugin plugin(obj);
 	MGlobal::displayInfo("Ultrabajskissplugin annihilated");
 
+	MMessage::removeCallbacks(gCallbackIds);
 
 	return MS::kSuccess;
 }
