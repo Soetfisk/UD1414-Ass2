@@ -1,24 +1,66 @@
-#include <iostream>
-
 #include "maya_includes.h"
 
 
 MCallbackIdArray gCallbackIds;
 
-DeclareSimpleCommand(HelloWorld, "Autodesk", "2016");
-
 void addNodeCallback(MObject nodeObject)
 {
-	MStatus st = MS::kSuccess;
-	MCallbackId  id = 
+	MStatus rs = MS::kSuccess;
+	MCallbackId id = MNodeMessage::addAttributeChangedCallback(nodeObject, NULL, &rs);
+
+	
+	gCallbackIds.append(id);
+
+	//DERP SJIT
+
+}
+
+void nodeAdded(MObject nodeObject)
+{
+
+}
+
+
+
+MCallbackId addNodeAddedCallback(MMessage::MNodeFunction func)
+{
 
 
 }
 
-MStatus HelloWorld::doIt(const MArgList&)
+
+//static MStatus removeCallbacks(MCallbackIdArray &ids)
+//{
+//
+//}
+
+
+EXPORT MStatus initializePlugin(MObject obj)
 {
-	printf("poop\n");
-	std::cout << "also poop\n" << std::endl;
+	MStatus rs = MS::kSuccess;
+
+	MFnPlugin myPlugin(obj, "Maya plugin", "1.0", "Any", &rs);
+	if (MFAIL(rs))
+	{
+		CHECK_MSTATUS(rs);
+	}
+
+	MGlobal::displayInfo("Ultradoom plugin loaded");
+
+	addNodeCallback(obj);
+
+
+	return rs;
+}
+
+
+EXPORT MStatus uninitializePlugin(MObject obj)
+{
+	MFnPlugin plugin(obj);
+	MGlobal::displayInfo("Ultradoom plugin annihilated");
+
+
 	return MS::kSuccess;
 }
+
 
