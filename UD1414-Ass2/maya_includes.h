@@ -30,6 +30,7 @@
 #include <maya/MItDependencyNodes.h>
 
 // Wrappers
+#include <maya/MTimer.h>
 #include <maya/MGlobal.h>
 #include <maya/MCallbackIdArray.h>
 
