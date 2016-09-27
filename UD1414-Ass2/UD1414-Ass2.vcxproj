@@ -130,7 +130,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="penus.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="maya_includes.h" />
